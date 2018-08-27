@@ -10,12 +10,13 @@ const getUserById = async id => {
 }
 
 const updateUser = async (id, user) => {
-  const resp = await fetch(`${BASE_URI}/v1/contacts/${id}`, {
+  await fetch(`${BASE_URI}/v1/contacts/${id}`, {
     method: 'PUT',
     mode: 'cors',
     body: JSON.stringify(user)
   })
 
+  alert('User saved')
   return await getUserById(id)
 }
 
@@ -42,13 +43,22 @@ class App extends Component {
           } }
         >
           <div>
-            ID: <input type="text" name="id" value={ user._id } onChange={e => this.setState({ user: { ...this.state.user, _id: e.target.value }})}  />
+            ID: <input
+            type="text" name="id" value={ user._id }
+            onChange={ e => this.setState({ user: { ...this.state.user, _id: e.target.value } }) }
+          />
           </div>
           <div>
-            Name: <input type="text" value={ user.name } onChange={e => this.setState({ user: { ...this.state.user, name: e.target.value }})} />
+            Name: <input
+            type="text" value={ user.name }
+            onChange={ e => this.setState({ user: { ...this.state.user, name: e.target.value } }) }
+          />
           </div>
           <div>
-            Email: <input type="email" value={ user.email } onChange={e => this.setState({ user: { ...this.state.user, email: e.target.value }})} />
+            Email: <input
+            type="email" value={ user.email }
+            onChange={ e => this.setState({ user: { ...this.state.user, email: e.target.value } }) }
+          />
           </div>
           <div>
             <button type="submit">Save</button>
